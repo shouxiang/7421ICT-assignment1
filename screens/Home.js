@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from "react-native";
-import Title from "../components/Title";
-import Underline from "../components/Underline";
-import TodoList from "../components/TodoList";
-import MyButton from "../components/MyButton";
-import Footer from "../components/Footer";
+import Title from "../src/components/Title";
+import Underline from "../src/components/Underline";
+import TodoList from "../src/components/TodoList";
+import MyButton from "../src/components/MyButton";
+import Footer from "../src/components/Footer";
 
 export default () => {
   return (

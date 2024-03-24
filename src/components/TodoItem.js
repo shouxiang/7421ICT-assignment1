@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default ({ text }) => (
   <View style={styles.container}>
-    <Text>{text}</Text>
+    <Text style={styles.text}>{text}</Text>
   </View>
 );
 
@@ -14,5 +14,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     marginTop: 10,
     justifyContent: "center",
+  },
+  text: {
+    fontSize: 15,
   },
 });
