@@ -1,20 +1,28 @@
 import { Text, StyleSheet, Pressable } from "react-native";
+import { activeButtonColor, pressedButtonColor } from "../constants/color";
 
 export default ({ title }) => (
-  <Pressable style={styles.button}>
+  <Pressable
+    style={({ pressed }) => [
+      styles.pressable,
+      pressed ? styles.pressed : styles.active,
+    ]}
+  >
     <Text style={styles.text}>{title}</Text>
   </Pressable>
 );
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    paddingVertical: 6,
+  pressable: {
+    // borderWidth: 1,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#1969FF",
-    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 25,
   },
+  pressed: { backgroundColor: pressedButtonColor },
+  active: { backgroundColor: activeButtonColor },
   text: {
     fontSize: 16,
     fontWeight: "bold",

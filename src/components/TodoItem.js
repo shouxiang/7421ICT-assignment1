@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
+import { todoItemColor } from "../constants/color";
 
 export default ({ text }) => (
   <View style={styles.container}>
@@ -8,12 +9,12 @@ export default ({ text }) => (
 
 const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
-    backgroundColor: "#75E0FF",
-    borderRadius: 2,
-    paddingLeft: 10,
-    marginTop: 10,
+    backgroundColor: todoItemColor,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    minHeight: 25,
     justifyContent: "center",
+    marginBottom: 10,
   },
   text: {
     fontSize: 15,

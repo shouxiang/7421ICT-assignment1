@@ -4,8 +4,9 @@ export default () => <View style={styles.underline}></View>;
 
 const styles = StyleSheet.create({
   underline: {
-    borderBottomWidth: 1.5,
-    borderBottomColor: "black",
-    width: "100%",
+    borderColor: "black",
+    // width: "100%",
+    // height: 10,
+    borderWidth: 1,
   },
 });
