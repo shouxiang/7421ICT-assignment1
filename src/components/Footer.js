@@ -13,8 +13,12 @@ export default () => (
 
 const styles = StyleSheet.create({
   container: {
+    // borderWidth: 1,
     flex: 1,
   },
   underline: { flex: 1, borderTopWidth: 2 },
-  button: { flex: 4 },
+  button: {
+    // borderWidth: 1,
+    flex: 4,
+  },
 });

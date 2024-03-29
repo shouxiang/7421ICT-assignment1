@@ -1,4 +1,5 @@
 export const homeBackgroundColor = "#fff";
-export const todoItemColor = "#75E0FF";
-export const activeButtonColor = "#1969FF";
-export const pressedButtonColor = "#75E0FF";
+export const todoItemColor = "#add8e6";
+export const activeButtonColor = "#add8e6";
+export const pressedButtonColor = "#a8b4e8";
+export const iconColor = "green";

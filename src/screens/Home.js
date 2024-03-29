@@ -24,19 +24,16 @@ export default () => {
 
 const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
     flex: 1,
     margin: "2%",
     padding: "2%",
     backgroundColor: homeBackgroundColor,
   },
   title: {
-    // borderWidth: 1,
     flex: 1,
   },
   todoList: { flex: 15, paddingHorizontal: "3%" },
   footer: {
-    // borderWidth: 1,
     flex: 1,
   },
 });
