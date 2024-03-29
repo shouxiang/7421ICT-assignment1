@@ -16,17 +16,14 @@ const styles = StyleSheet.create({
   },
   title: {
     // borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 10,
-    flex: 3,
+    marginBottom: 15,
   },
   underline: {
     borderTopWidth: 2,
-    flex: 1,
   },
   text: {
     fontWeight: "bold",
     fontSize: 20,
+    textAlign: "center",
   },
 });

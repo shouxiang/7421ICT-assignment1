@@ -1,20 +1,16 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+
 import { activeButtonColor, pressedButtonColor } from "../constants/color";
 
-export default ({ title, icon }) => (
+export default ({ title, icon, handleOnPress }) => (
   <Pressable
     style={({ pressed }) => [
       styles.pressable,
       pressed ? styles.pressed : styles.active,
     ]}
+    onPress={handleOnPress}
   >
-    <AntDesign
-      name="pluscircle"
-      size={24}
-      color="green"
-      style={{ borderWidth: 1, marginRight: 10 }}
-    />
+    {icon}
 
     <Text style={styles.text}>{title}</Text>
   </Pressable>
@@ -29,12 +25,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 10,
   },
   pressed: { backgroundColor: pressedButtonColor },
   active: { backgroundColor: activeButtonColor },
 
   text: {
-    borderWidth: 1,
+    // borderWidth: 1,
     fontSize: 16,
     fontWeight: "bold",
     color: "black",
