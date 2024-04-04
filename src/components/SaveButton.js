@@ -1,8 +1,8 @@
 import { View, StyleSheet } from "react-native";
-import MyButton from "../MyButton";
+import MyButton from "./MyButton";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { iconColor } from "../../constants/color";
+import { iconColor } from "../constants/color";
 
 export default ({ handleCancel, handleSave }) => (
   <View style={styles.container}>

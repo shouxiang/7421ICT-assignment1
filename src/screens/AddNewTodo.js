@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import Title from "../components/Title";
 import { addTodoBackgroundColor } from "../constants/color";
 import TodoForm from "../components/TodoForm";
-import Footer from "../components/Footer/AddNewTodo";
+import SaveButton from "../components/SaveButton";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
@@ -37,7 +37,7 @@ export default () => {
         />
       </View>
       <View style={styles.footer}>
-        <Footer handleCancel={handleCancel} handleSave={undefined} />
+        <SaveButton handleCancel={handleCancel} handleSave={undefined} />
       </View>
     </View>
   );

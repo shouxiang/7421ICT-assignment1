@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import Title from "../components/Title";
 import TodoList from "../components/TodoList";
-import Footer from "../components/Footer/Home";
+import AddNewTodoButton from "../components/AddNewTodoButton";
 import { homeBackgroundColor } from "../constants/color";
 import { useNavigation } from "@react-navigation/native";
 
@@ -9,7 +9,7 @@ const todo = ["Buy milk", "Buy bread", "Buy eggs"];
 
 export default () => {
   const navigation = useNavigation();
-  const clickAddNewTodo = () => {
+  const handleAddNewTodo = () => {
     navigation.navigate("AddNewTodo");
   };
   return (
@@ -21,7 +21,7 @@ export default () => {
         <TodoList todos={todo} />
       </View>
       <View style={styles.footer}>
-        <Footer handleOnPress={clickAddNewTodo} />
+        <AddNewTodoButton onPress={handleAddNewTodo} />
       </View>
     </View>
   );

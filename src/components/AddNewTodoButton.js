@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
-import MyButton from "../MyButton";
+import MyButton from "./MyButton";
 import { AntDesign } from "@expo/vector-icons";
-import { iconColor } from "../../constants/color";
+import { iconColor } from "../constants/color";
 
-export default ({ handleOnPress }) => (
+export default ({ onPress }) => (
   <View style={styles.container}>
     <View style={styles.underline}></View>
     <View style={styles.button}>
@@ -17,7 +17,7 @@ export default ({ handleOnPress }) => (
             style={{ marginRight: 20 }}
           />
         }
-        handleOnPress={handleOnPress}
+        onPress={onPress}
       />
     </View>
   </View>

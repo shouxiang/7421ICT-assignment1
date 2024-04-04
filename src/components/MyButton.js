@@ -1,14 +1,14 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, Pressable } from "react-native";
 
 import { activeButtonColor, pressedButtonColor } from "../constants/color";
 
-export default ({ title, icon, handleOnPress }) => (
+export default ({ title, icon, onPress }) => (
   <Pressable
     style={({ pressed }) => [
       styles.pressable,
       pressed ? styles.pressed : styles.active,
     ]}
-    onPress={handleOnPress}
+    onPress={onPress}
   >
     {icon}
 
