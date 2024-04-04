@@ -7,18 +7,14 @@ export default ({ onPress }) => (
   <View style={styles.container}>
     <View style={styles.underline}></View>
     <View style={styles.button}>
-      <MyButton
-        title={"Add New Todo"}
-        icon={
-          <AntDesign
-            name="pluscircle"
-            size={20}
-            color={iconColor}
-            style={{ marginRight: 20 }}
-          />
-        }
-        onPress={onPress}
-      />
+      <MyButton title={"Add New Todo"} onPress={onPress}>
+        <AntDesign
+          name="pluscircle"
+          size={20}
+          color={iconColor}
+          style={{ marginRight: 20 }}
+        />
+      </MyButton>
     </View>
   </View>
 );

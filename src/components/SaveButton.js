@@ -4,36 +4,28 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { iconColor } from "../constants/color";
 
-export default ({ handleCancel, handleSave }) => (
+export default ({ onCancel, onSave }) => (
   <View style={styles.container}>
     <View style={styles.cancel}>
-      <MyButton
-        title={"Cancel"}
-        icon={
-          <FontAwesome5
-            name="backspace"
-            size={24}
-            color={iconColor}
-            style={{ marginRight: 15 }}
-          />
-        }
-        handleOnPress={handleCancel}
-      />
+      <MyButton title={"Cancel"} onPress={onCancel}>
+        <FontAwesome5
+          name="backspace"
+          size={24}
+          color={iconColor}
+          style={{ marginRight: 15 }}
+        />
+      </MyButton>
     </View>
 
     <View style={styles.save}>
-      <MyButton
-        title={"Save"}
-        icon={
-          <Ionicons
-            name="save"
-            size={24}
-            color={iconColor}
-            style={{ marginRight: 15 }}
-          />
-        }
-        handleOnPress={handleSave}
-      />
+      <MyButton title={"Save"} onPress={onSave}>
+        <Ionicons
+          name="save"
+          size={24}
+          color={iconColor}
+          style={{ marginRight: 15 }}
+        />
+      </MyButton>
     </View>
   </View>
 );

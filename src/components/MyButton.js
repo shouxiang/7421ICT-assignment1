@@ -2,7 +2,7 @@ import { Text, StyleSheet, Pressable } from "react-native";
 
 import { activeButtonColor, pressedButtonColor } from "../constants/color";
 
-export default ({ title, icon, onPress }) => (
+export default ({ title, onPress, children }) => (
   <Pressable
     style={({ pressed }) => [
       styles.pressable,
@@ -10,7 +10,7 @@ export default ({ title, icon, onPress }) => (
     ]}
     onPress={onPress}
   >
-    {icon}
+    {children}
 
     <Text style={styles.text}>{title}</Text>
   </Pressable>

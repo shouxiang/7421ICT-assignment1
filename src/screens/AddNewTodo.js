@@ -8,12 +8,12 @@ import { useNavigation } from "@react-navigation/native";
 
 export default () => {
   const navigation = useNavigation();
-  const [title, setTitle] = useState("Input the title...");
-  const [description, setDescription] = useState("Description...");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const handleCancel = () => {
-    setTitle("Input the title...");
-    setDescription("Description...");
     navigation.navigate("Home");
+    setTitle("");
+    setDescription("");
   };
   const handleChangeTitle = (text) => {
     setTitle(text);
@@ -32,12 +32,12 @@ export default () => {
         <TodoForm
           title={title}
           description={description}
-          handleChangeTitle={handleChangeTitle}
-          handleChangeDescription={handleChangeDescription}
+          onChangeTitle={handleChangeTitle}
+          onChangeDescription={handleChangeDescription}
         />
       </View>
-      <View style={styles.footer}>
-        <SaveButton handleCancel={handleCancel} handleSave={undefined} />
+      <View style={styles.saveButton}>
+        <SaveButton onCancel={handleCancel} onSave={undefined} />
       </View>
     </View>
   );
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: "2%",
     // marginVertical: "2%",
   },
-  footer: {
+  saveButton: {
     // borderWidth: 1,
     flex: 2.5,
   },

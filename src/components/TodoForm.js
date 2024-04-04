@@ -1,11 +1,6 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
-export default ({
-  title,
-  description,
-  handleChangeTitle,
-  handleChangeDescription,
-}) => {
+export default ({ title, description, onChangeTitle, onChangeDescription }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Title</Text>
@@ -14,7 +9,7 @@ export default ({
         placeholder="Input the title..."
         cursorColor="black"
         value={title}
-        onChangeText={(text) => handleChangeTitle(text)}
+        onChangeText={onChangeTitle}
         showSoftInputOnFocus={false}
       />
       <Text style={styles.title}>Description</Text>
@@ -25,7 +20,8 @@ export default ({
         placeholder="Description..."
         cursorColor="black"
         value={description}
-        onChangeText={(text) => handleChangeDescription(text)}
+        onChangeText={onChangeDescription}
+        showSoftInputOnFocus={false}
       />
     </View>
   );

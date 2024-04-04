@@ -20,7 +20,7 @@ export default () => {
       <View style={styles.todoList}>
         <TodoList todos={todo} />
       </View>
-      <View style={styles.footer}>
+      <View style={styles.addNewTodoButton}>
         <AddNewTodoButton onPress={handleAddNewTodo} />
       </View>
     </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   todoList: { flex: 15, paddingHorizontal: "3%", marginVertical: "2%" },
-  footer: {
+  addNewTodoButton: {
     flex: 1,
   },
 });
