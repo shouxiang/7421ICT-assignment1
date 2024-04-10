@@ -7,7 +7,7 @@ import { iconColor } from "../constants/color";
 export default ({ onCancel, onSave }) => (
   <View style={styles.container}>
     <View style={styles.cancel}>
-      <MyButton title={"Cancel"} onPress={onCancel}>
+      <MyButton title={"Back"} onPress={onCancel}>
         <FontAwesome5
           name="backspace"
           size={24}

@@ -10,7 +10,6 @@ export default ({ title, description, onChangeTitle, onChangeDescription }) => {
         cursorColor="black"
         value={title}
         onChangeText={onChangeTitle}
-        showSoftInputOnFocus={false}
       />
       <Text style={styles.title}>Description</Text>
       <TextInput
@@ -21,7 +20,6 @@ export default ({ title, description, onChangeTitle, onChangeDescription }) => {
         cursorColor="black"
         value={description}
         onChangeText={onChangeDescription}
-        showSoftInputOnFocus={false}
       />
     </View>
   );

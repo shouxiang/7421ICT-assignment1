@@ -1,20 +1,19 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
+import { useState } from "react";
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 import Title from "../components/Title";
 import { addTodoBackgroundColor } from "../constants/color";
 import TodoForm from "../components/TodoForm";
 import SaveButton from "../components/SaveButton";
-import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { loadData, saveData } from "../datamodel/mydata";
 
 export default () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const handleCancel = () => {
-    navigation.navigate("Home");
-    setTitle("");
-    setDescription("");
-  };
+
   const handleChangeTitle = (text) => {
     setTitle(text);
   };
@@ -23,10 +22,39 @@ export default () => {
     setDescription(text);
   };
 
+  const handleCancel = () => {
+    navigation.navigate("Home");
+    setTitle("");
+    setDescription("");
+  };
+
+  const handleSave = async () => {
+    if (title.trim().length === 0 || description.trim().length === 0) {
+      return;
+    }
+    let curTodos = await loadData("todos");
+    if (!curTodos) {
+      curTodos = [];
+    }
+    curTodos.push({ id: uuidv4(), title, description });
+
+    await saveData(curTodos, "todos");
+    setTitle("");
+    setDescription("");
+    Alert.alert("Todo Added Successfully", null, [
+      {
+        text: "OK",
+        // onPress: () => console.log("OK Pressed"),
+        style: "cancel",
+        textAlign: "center",
+      },
+    ]);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Title text={"Add New Todo"} />
+        <Title text="Add New Todo" />
       </View>
       <View style={styles.todoForm}>
         <TodoForm
@@ -37,7 +65,7 @@ export default () => {
         />
       </View>
       <View style={styles.saveButton}>
-        <SaveButton onCancel={handleCancel} onSave={undefined} />
+        <SaveButton onCancel={handleCancel} onSave={handleSave} />
       </View>
     </View>
   );

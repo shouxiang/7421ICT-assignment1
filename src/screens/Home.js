@@ -3,13 +3,35 @@ import Title from "../components/Title";
 import TodoList from "../components/TodoList";
 import AddNewTodoButton from "../components/AddNewTodoButton";
 import { homeBackgroundColor } from "../constants/color";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { useState, useEffect } from "react";
+import { loadData } from "../datamodel/mydata";
 
-const todo = ["Buy milk", "Buy bread", "Buy eggs"];
+const initialTodos = [
+  { title: "Monday", description: "Buy milk" },
+  {
+    title: "TUesday",
+    description: "Buy milkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  },
+  { title: "Monday", description: "Buy milkaaaaaaaaaaaaaaaaaaaddddddd" },
+];
 
 export default () => {
+  const isFocused = useIsFocused();
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const fun = async () => {
+      const data = await loadData("todos");
+      if (data) {
+        setTodos(data);
+      }
+    };
+    fun();
+  }, [isFocused]);
+
   const navigation = useNavigation();
-  const handleAddNewTodo = () => {
+  const navToAddNewTodo = () => {
     navigation.navigate("AddNewTodo");
   };
   return (
@@ -18,10 +40,10 @@ export default () => {
         <Title text={"My Todo List"} />
       </View>
       <View style={styles.todoList}>
-        <TodoList todos={todo} />
+        <TodoList todos={todos} />
       </View>
       <View style={styles.addNewTodoButton}>
-        <AddNewTodoButton onPress={handleAddNewTodo} />
+        <AddNewTodoButton onPress={navToAddNewTodo} />
       </View>
     </View>
   );
