@@ -1,4 +1,4 @@
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, SafeAreaView } from "react-native";
 import { useState } from "react";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
@@ -8,6 +8,7 @@ import TodoForm from "../components/TodoForm";
 import SaveButton from "../components/SaveButton";
 import { useNavigation } from "@react-navigation/native";
 import { loadData, saveData } from "../datamodel/mydata";
+import KeyboardAvoidingComponent from "../components/KeyboardAvoidingComponent";
 
 export default () => {
   const navigation = useNavigation();
@@ -36,38 +37,41 @@ export default () => {
     if (!curTodos) {
       curTodos = [];
     }
-    curTodos.push({ id: uuidv4(), title, description });
+    curTodos.push({ id: uuidv4(), title, description, isCompleted: false });
 
     await saveData(curTodos, "todos");
     setTitle("");
     setDescription("");
-    Alert.alert("Todo Added Successfully", null, [
-      {
-        text: "OK",
-        // onPress: () => console.log("OK Pressed"),
-        style: "cancel",
-        textAlign: "center",
-      },
-    ]);
+    // Alert.alert("Todo Added Successfully", null, [
+    //   {
+    //     text: "OK",
+    //     // onPress: () => console.log("OK Pressed"),
+    //     style: "cancel",
+    //     textAlign: "center",
+    //   },
+    // ]);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Title text="Add New Todo" />
-      </View>
-      <View style={styles.todoForm}>
-        <TodoForm
-          title={title}
-          description={description}
-          onChangeTitle={handleChangeTitle}
-          onChangeDescription={handleChangeDescription}
-        />
-      </View>
-      <View style={styles.saveButton}>
-        <SaveButton onCancel={handleCancel} onSave={handleSave} />
-      </View>
-    </View>
+    <KeyboardAvoidingComponent>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.title}>
+          <Title text="Add New Todo" />
+        </View>
+        <View style={styles.todoForm}>
+          <TodoForm
+            title={title}
+            description={description}
+            onChangeTitle={handleChangeTitle}
+            onChangeDescription={handleChangeDescription}
+          />
+        </View>
+
+        <View style={styles.saveButton}>
+          <SaveButton onCancel={handleCancel} onSave={handleSave} />
+        </View>
+      </SafeAreaView>
+    </KeyboardAvoidingComponent>
   );
 };
 
@@ -80,16 +84,17 @@ const styles = StyleSheet.create({
   },
   title: {
     // borderWidth: 1,
-    flex: 1.5,
+    flex: 2,
   },
   todoForm: {
     // borderWidth: 1,
-    flex: 12,
+    flex: 14,
     paddingHorizontal: "2%",
     // marginVertical: "2%",
   },
+
   saveButton: {
     // borderWidth: 1,
-    flex: 2.5,
+    flex: 3,
   },
 });

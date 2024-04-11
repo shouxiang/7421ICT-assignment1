@@ -23,13 +23,16 @@ const styles = StyleSheet.create({
   container: {
     // borderWidth: 1,
     flex: 1,
+    justifyContent: "flex-end",
   },
   underline: {
+    // borderWidth: 1,
     flex: 1,
     borderTopWidth: 2,
   },
   button: {
     // borderWidth: 1,
-    flex: 4,
+    flex: 1,
+    justifyContent: "flex-end",
   },
 });

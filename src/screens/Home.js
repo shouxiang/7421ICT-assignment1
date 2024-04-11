@@ -1,51 +1,63 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import Title from "../components/Title";
 import TodoList from "../components/TodoList";
 import AddNewTodoButton from "../components/AddNewTodoButton";
 import { homeBackgroundColor } from "../constants/color";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { loadData } from "../datamodel/mydata";
-
-const initialTodos = [
-  { title: "Monday", description: "Buy milk" },
-  {
-    title: "TUesday",
-    description: "Buy milkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  },
-  { title: "Monday", description: "Buy milkaaaaaaaaaaaaaaaaaaaddddddd" },
-];
+import { loadData, saveData } from "../datamodel/mydata";
+import KeyboardAvoidingComponent from "../components/KeyboardAvoidingComponent";
 
 export default () => {
   const isFocused = useIsFocused();
   const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    const fun = async () => {
-      const data = await loadData("todos");
-      if (data) {
-        setTodos(data);
-      }
-    };
-    fun();
-  }, [isFocused]);
-
   const navigation = useNavigation();
   const navToAddNewTodo = () => {
     navigation.navigate("AddNewTodo");
   };
+
+  const handleDelete = async (id) => {
+    const curTodos = await loadData("todos");
+    const newTodos = curTodos.filter((todo) => todo.id !== id);
+    await saveData(newTodos, "todos");
+    setTodos(newTodos);
+  };
+
+  const handleComplete = async (id) => {
+    const curTodos = await loadData("todos");
+    const newTodos = curTodos.map((todo) =>
+      todo.id === id ? { ...todo, isCompleted: true } : todo
+    );
+    await saveData(newTodos, "todos");
+    setTodos(newTodos);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const data = await loadData("todos");
+      if (data) {
+        setTodos(data);
+      }
+    })();
+  }, [isFocused]);
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Title text={"My Todo List"} />
-      </View>
-      <View style={styles.todoList}>
-        <TodoList todos={todos} />
-      </View>
-      <View style={styles.addNewTodoButton}>
-        <AddNewTodoButton onPress={navToAddNewTodo} />
-      </View>
-    </View>
+    <KeyboardAvoidingComponent>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.title}>
+          <Title text={"My Todo List"} />
+        </View>
+        <View style={styles.todoList}>
+          <TodoList
+            todos={todos}
+            onDelete={handleDelete}
+            onComplete={handleComplete}
+          />
+        </View>
+        <View style={styles.addNewTodoButton}>
+          <AddNewTodoButton onPress={navToAddNewTodo} />
+        </View>
+      </SafeAreaView>
+    </KeyboardAvoidingComponent>
   );
 };
 
@@ -60,7 +72,12 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     flex: 1,
   },
-  todoList: { flex: 15, paddingHorizontal: "3%", marginVertical: "2%" },
+  todoList: {
+    // borderWidth: 1,
+    flex: 12,
+    paddingHorizontal: "3%",
+    marginVertical: "2%",
+  },
   addNewTodoButton: {
     flex: 1,
   },
