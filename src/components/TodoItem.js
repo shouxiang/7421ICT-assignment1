@@ -35,29 +35,30 @@ export default ({ item, onDelete, onComplete }) => {
         />
       </View>
       {expanded && (
-        <View style={styles.description}>
-          <Text style={{ fontSize: 15 }}>{item.description}</Text>
-        </View>
+        <>
+          <View style={styles.description}>
+            <Text style={{ fontSize: 15 }}>{item.description}</Text>
+          </View>
+          <View style={styles.buttonPanel}>
+            {!item.isCompleted && (
+              <Ionicons
+                name="cloud-done-sharp"
+                size={24}
+                color="green"
+                onPress={() => onComplete(item.id)}
+              />
+            )}
+            <Ionicons
+              name="trash-sharp"
+              size={24}
+              color="red"
+              onPress={() => {
+                onDelete(item.id);
+              }}
+            />
+          </View>
+        </>
       )}
-
-      <View style={styles.buttonPanel}>
-        {!item.isCompleted && (
-          <Ionicons
-            name="cloud-done-sharp"
-            size={24}
-            color="green"
-            onPress={() => onComplete(item.id)}
-          />
-        )}
-        <Ionicons
-          name="trash-sharp"
-          size={24}
-          color="red"
-          onPress={() => {
-            onDelete(item.id);
-          }}
-        />
-      </View>
     </View>
   );
 };

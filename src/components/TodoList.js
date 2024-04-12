@@ -8,20 +8,13 @@ export default ({ todos, onDelete, onComplete }) => (
         No Items in your list
       </Text>
     ) : (
-      // todos.map((item, index) => (
-      //   <TodoItem
-      //     key={index}
-      //     title={item.title}
-      //     description={item.description}
-      //   />
-      // ))
       <FlatList
         keyExtractor={(item) => item.id}
         data={todos}
         renderItem={({ item }) => (
           <TodoItem item={item} onDelete={onDelete} onComplete={onComplete} />
         )}
-        showsVerticalScrollIndicator={false}
+        // showsVerticalScrollIndicator={false}
       />
     )}
   </View>

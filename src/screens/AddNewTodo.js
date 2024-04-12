@@ -42,14 +42,14 @@ export default () => {
     await saveData(curTodos, "todos");
     setTitle("");
     setDescription("");
-    // Alert.alert("Todo Added Successfully", null, [
-    //   {
-    //     text: "OK",
-    //     // onPress: () => console.log("OK Pressed"),
-    //     style: "cancel",
-    //     textAlign: "center",
-    //   },
-    // ]);
+    Alert.alert("Todo Added Successfully", null, [
+      {
+        text: "OK",
+        // onPress: () => console.log("OK Pressed"),
+        style: "cancel",
+        textAlign: "center",
+      },
+    ]);
   };
 
   return (

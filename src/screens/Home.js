@@ -12,6 +12,7 @@ export default () => {
   const isFocused = useIsFocused();
   const [todos, setTodos] = useState([]);
   const navigation = useNavigation();
+
   const navToAddNewTodo = () => {
     navigation.navigate("AddNewTodo");
   };
